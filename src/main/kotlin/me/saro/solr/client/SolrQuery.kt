@@ -5,6 +5,12 @@ import java.net.URLEncoder
 class SolrQuery(
     private val params: StringBuilder = StringBuilder(200)
 ) {
+    companion object {
+        private val escapeRegex = Regex("[+\\-&|!(){}\\[\\]^~*?:/]")
+        @JvmStatic
+        fun escape(originText: String) = escapeRegex.replace(originText, "\\$1")
+    }
+
     fun query(query: String) =
         encodeParam("q", URLEncoder.encode(query, Charsets.UTF_8))
 
