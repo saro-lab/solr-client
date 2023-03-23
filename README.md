@@ -6,12 +6,12 @@
 
 ## gradle kts
 ```
-implementation('me.saro:solr-client:1.0')
+implementation("me.saro:solr-client:1.0")
 ```
 
 ## gradle
 ```
-compile 'me.saro:solr-client:1.0'
+compile "me.saro:solr-client:1.0"
 ```
 
 ## maven
