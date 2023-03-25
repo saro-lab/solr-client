@@ -9,6 +9,15 @@ class SolrQuery(
         private val escapeRegex = Regex("[+\\-&|!(){}\\[\\]^~*?:/]")
         @JvmStatic
         fun escape(originText: String) = escapeRegex.replace(originText, "\\$1")
+
+        fun toAndQuery(wordList: List<String>, escaped: Boolean): String {
+            var seq = wordList.asSequence().filter { it.isNotBlank() }
+            if (!escaped) {
+                seq = seq.map { escape(it) }
+            }
+            return seq.joinToString(") AND (", "(", ")")
+        }
+
     }
 
     fun query(query: String) =
